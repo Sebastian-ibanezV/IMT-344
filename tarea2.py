@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-img_bgr = cv2.imread("images.jpg")
+img_bgr = cv2.imread("image.jpg")
 
 img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
 
@@ -16,24 +16,21 @@ _, B_bin = cv2.threshold(B, 127, 255, cv2.THRESH_BINARY)
 
 suma_bin = R_bin + G_bin + B_bin
 
-suma_vis = cv2.normalize(suma_bin, None, 0, 255, cv2.NORM_MINMAX)
-
-suma_logica = np.where((R_bin > 0) | (G_bin > 0) | (B_bin > 0), 255, 0).astype(np.uint8)
 
 plt.figure(figsize=(10, 8))
 
 plt.subplot(2, 3, 1)
-plt.imshow(R, cmap="gray")
+plt.imshow(R)
 plt.title("Canal R")
 plt.axis("off")
 
 plt.subplot(2, 3, 2)
-plt.imshow(G, cmap="gray")
+plt.imshow(G)
 plt.title("Canal G")
 plt.axis("off")
 
 plt.subplot(2, 3, 3)
-plt.imshow(B, cmap="gray")
+plt.imshow(B)
 plt.title("Canal B")
 plt.axis("off")
 
@@ -58,13 +55,8 @@ plt.show()
 plt.figure(figsize=(10, 4))
 
 plt.subplot(1, 2, 1)
-plt.imshow(suma_vis, cmap="gray")
+plt.imshow(suma_bin, cmap="gray")
 plt.title("Suma de binarios")
-plt.axis("off")
-
-plt.subplot(1, 2, 2)
-plt.imshow(suma_logica, cmap="gray")
-plt.title("Union binaria")
 plt.axis("off")
 
 plt.tight_layout()
